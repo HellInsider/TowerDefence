@@ -7,6 +7,8 @@ using System.Linq;
 using System;
 using Unity.VisualScripting;
 using UnityEngine.Events;
+using System.Collections;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class SavedData
@@ -30,10 +32,18 @@ public class GameData : MonoBehaviour
     private DrawElements drawElements;
     [SerializeField] TMP_Text uncapturedSettlements;
     [SerializeField] TMP_Text capturedSettlements;
-    public SavedData Start()
+    public void Start()
     {
-        string json = FromJson();
+        StartCoroutine(LoadData());
+    }
+public IEnumerator LoadData()
+    {
+        string fileName = "GameData.json";
+        string path = Path.Combine(Application.streamingAssetsPath, fileName);
 
+        UnityWebRequest www = UnityWebRequest.Get(path);
+        yield return www.SendWebRequest();
+        string json = www.downloadHandler.text;
         GetStats(json);
 
         Initialization();
@@ -44,7 +54,7 @@ public class GameData : MonoBehaviour
         allmoney = data.OutsideCurrency;
         DrawSettlements();
 
-        return data;
+        yield return data;
     }
 
     private void GetStats(string json)
@@ -54,13 +64,7 @@ public class GameData : MonoBehaviour
         GameDataDict.TryGetValue(key, out data);
     }
 
-    private static string FromJson()
-    {
-        string fileName = "GameData.json";
-        string path = Path.Combine(Application.dataPath, "Configs", fileName);
-        string json = File.ReadAllText(path).Trim();
-        return json;
-    }
+
 
     private void Initialization()
     {

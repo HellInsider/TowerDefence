@@ -16,6 +16,6 @@ MonoBehaviour:
   cooldownTime: 0.25
   activeTime: 0
   projectile: {fileID: 6561135981250822360, guid: 3adde7c091c9a7b4d87da96ca249833c, type: 3}
-  projSpeed: 10
-  damage: 5
+  projSpeed: 7
+  damage: 1.5
   team: 1

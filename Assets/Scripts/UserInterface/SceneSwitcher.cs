@@ -7,13 +7,19 @@ using TMPro;
 public class SceneSwitcher : MonoBehaviour
 {
     public string scenename;
-    public void OnButtonClick()
+    public void OnButtonClick(string sceneName)
     {
-        Debug.Log("я перехожу!");
-        SceneManager.LoadScene(scenename);
-        //if(scenename == "quit")
-        //{
-        //    Application.Quit();
-        //}
+       
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
+
+        // Метод для выхода из приложения
+        public void QuitGame()
+        {
+            // Проверяем, запущено ли приложение на устройстве Android
+
+            // Для других платформ используем стандартный метод Quit
+            Application.Quit();
+        }
 }
+

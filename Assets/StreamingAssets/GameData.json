@@ -2,8 +2,8 @@
   {
   "StashedTownholders": 1,
   "OutsideCurrency" : 1,
-  "AllSettlements" : 2,
+  "AllSettlements" : 5,
   "CapturedSettlements" : 1,
-  "TimeofExit": "2024-05-02T14:30:00"
+  "TimeofExit": "2024-05-10T14:30:00"
   }
 }

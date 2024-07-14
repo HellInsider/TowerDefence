@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +37,17 @@ public class Enemy : MovableObject
 
     new void Awake()
     {
+        StartCoroutine(DelayStart());
+    }
+
+    private IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(0.11f);
         base.Awake(); // Вызов Awake из MovableObject
         stepTime = Random.value;
-
         spriteRenderer = GetComponent<SpriteRenderer>() ?? gameObject.AddComponent<SpriteRenderer>();
         abilityHolder = GetComponent<AbilityHolder>() ?? gameObject.AddComponent<AbilityHolder>();
+        FindNewTarget();
     }
 
     new void Update()
@@ -91,7 +98,7 @@ public class Enemy : MovableObject
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Проверяем, является ли объект врагом
-        if (other.gameObject.CompareTag("Miner") || other.gameObject.CompareTag("Warrior"))
+        if (other.gameObject.CompareTag("Unit") || other.gameObject.CompareTag("Warrior"))
         {
             // Добавляем врага в список
             unitsInRange.Add(other.gameObject);
@@ -121,10 +128,10 @@ public class Enemy : MovableObject
         }
     }
 
-    void OnDrawGizmos()
-    {
-        if (rangeOfAttack != null) Handles.DrawWireDisc(transform.position + (Vector3)rangeOfAttack.offset, Vector3.forward, rangeOfAttack.radius);
-    }
+    //void OnDrawGizmos()
+    //{
+    //    if (rangeOfAttack != null) Handles.DrawWireDisc(transform.position + (Vector3)rangeOfAttack.offset, Vector3.forward, rangeOfAttack.radius);
+    //}
 
     #endregion
 

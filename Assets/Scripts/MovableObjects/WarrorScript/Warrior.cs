@@ -157,22 +157,5 @@ public class Warrior : MovableObject
     }
     #endregion
 
-    private void OnDrawGizmos()
-    {
-        if (rangeOfVision != null) Handles.DrawWireDisc(transform.position + (Vector3)rangeOfVision.offset, Vector3.forward, rangeOfVision.radius);
-        if (attackRange > 0) Handles.DrawWireDisc(transform.position + (Vector3)rangeOfVision.offset, Vector3.forward, attackRange);
-        Handles.DrawLine(transform.position, patrolTarget);
-        if (enemiesInRange != null && enemiesInRange.Count != 0)
-        {
-            foreach (GameObject enemy in enemiesInRange)
-            {
-                if (enemy != null)
-                {
-                    var collider = enemy.GetComponent<BoxCollider2D>();
-                    Handles.DrawWireCube(enemy.transform.position + (Vector3)collider.offset, collider.size);
-                }
-            }
-        }
-
-    }
+  
 }

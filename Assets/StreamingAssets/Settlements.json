@@ -3,7 +3,7 @@
   {
     "Captured" : true,
     "CountofUnits": 100,
-    "CountofCurrency" : 200,
+    "CountofCurrency" : 600,
     "CountofTownholders" : 1,
     "CountofBuildings" : 5,
     "Townholders" : " "
@@ -12,7 +12,7 @@
   {
     "Captured" : false,
     "CountofUnits": 150,
-    "CountofCurrency" : 2330,
+    "CountofCurrency" : 835,
     "CountofTownholders" : 1,
     "CountofBuildings" : 5,
     "Townholders" : " "

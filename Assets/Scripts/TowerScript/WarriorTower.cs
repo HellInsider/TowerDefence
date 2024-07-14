@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 
 public class WarriorTower : Tower
@@ -20,7 +19,7 @@ public class WarriorTower : Tower
         for (int i = warriors.Count - 1; i >= 0; i--)
         {
             var pair = warriors.ElementAt(i);
-            if (pair.Value==null || pair.Value.GetComponent<MovableObject>().isDead)
+            if (pair.Value == null || pair.Value.GetComponent<MovableObject>().isDead)
             {
                 pair.Key.SetActive(true);
                 pair.Key.GetComponent<MovableObject>().ApplyDamage(1000);
@@ -29,6 +28,7 @@ public class WarriorTower : Tower
         }
         base.UpdateUnitList();
     }
+
     public new int GetUnitsCount()
     {
         UpdateUnitList();
@@ -46,6 +46,7 @@ public class WarriorTower : Tower
         warriors.Add(unit, _warrior);
         unit.SetActive(false);
     }
+
     public override void ReleaseUnits(int Count, GameObject target)
     {
         UpdateUnitList();
@@ -62,10 +63,5 @@ public class WarriorTower : Tower
 
             units.RemoveAt(i);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Handles.DrawWireDisc(transform.position, Vector3.forward, PatrolDistance);
     }
 }

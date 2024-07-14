@@ -1,28 +1,23 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Mathematics;
-using UnityEditor;
 using UnityEngine;
 
 public class Mine : Tower
 {
     [SerializeField] public float resourcespersecond;
     [SerializeField] public float resources;
-    public Settlement settlement;
-    public Settlements data;
     float efficiency;
-    private void Start()
-    {
-        data = settlement.data;
-        Debug.Log("resources data " + data.countofCurrency);
-    }
-    public void Update()
+
+    public new float UpdateResources()
     {
         efficiency = CalcEfficiency();
-        resources += resourcespersecond * efficiency*Time.deltaTime;
-        data.countofCurrency = resources;
-        
-        //Debug.Log("resources data all time  " + data.countofCurrency);
+        resources = resourcespersecond * efficiency * Time.deltaTime;
+        return resources;
     }
+    public void EnableTower(GameObject gameObject)
+    {
+        GameObject.Instantiate(gameObject, transform);
+    }
+
 
 }

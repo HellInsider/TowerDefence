@@ -10,36 +10,44 @@ public class Counter : MonoBehaviour
     [SerializeField] TMP_Text warriorscounter = null;
     [SerializeField] TMP_Text warriorsunitcounter = null;
     [SerializeField] Settlement settlementdata;
-    [SerializeField] Settlements settlements;
+    [SerializeField] ClassSettlementsData settlements;
     int warriorcounter=0;
     int warriorunitcounter=0;
     int minerunitcounter=0;
     int minercounter=0;
 
+    private void Awake()
+    {
+         
+    }
     public void Update()
     {
         minercounter = 0;
         warriorcounter = 0;
         minerunitcounter = 0;
         warriorunitcounter = 0;
-        var data = settlementdata.data;
+        var data = settlementdata.settlementsData;
         List<GameObject> towerslist = GameObject.FindGameObjectsWithTag("Tower").ToList();
         for( int i =0; i<towerslist.Count; i++ ) 
         {
             if(towerslist[i].GetComponent("WarriorTower") != null)
             {
                 warriorcounter++;
-                warriorunitcounter+= towerslist[i].GetComponent<WarriorTower>().GetUnitsCount();
+                WarriorTower warriorTower = towerslist[i].GetComponent<WarriorTower>();
+                warriorunitcounter += warriorTower.GetComponent<WarriorTower>().GetUnitsCount();
             }
             if (towerslist[i].GetComponent("ArcherTower") != null)
             {
                 warriorcounter++;
-                warriorunitcounter += towerslist[i].GetComponent<ArcherTower>().GetUnitsCount();
+                ArcherTower archerTower = towerslist[i].GetComponent<ArcherTower>();
+                warriorunitcounter += archerTower.GetUnitsCount();
+                    //warriorunitcounter += towerslist[i].GetComponent<ArcherTower>().GetUnitsCount();
             }
             if (towerslist[i].GetComponent("Mine") != null)
             {
                 minercounter++;
-                minerunitcounter += towerslist[i].GetComponent<Mine>().GetUnitsCount();
+                Mine mine = towerslist[i].GetComponent<Mine>();
+                minerunitcounter += mine.GetComponent<Mine>().GetUnitsCount();
             }
             
         }
@@ -58,6 +66,17 @@ public class Counter : MonoBehaviour
         }
         minerscounter.text = minercounter.ToString("#");
         warriorscounter.text = warriorcounter.ToString("#");
+        if(minercounter == 0 || warriorcounter == 0)
+        {
+            if (minercounter == 0)
+            {
+                minerscounter.text = minercounter.ToString("0");
+            }
+            if (warriorcounter == 0)
+            {
+                warriorscounter.text = warriorcounter.ToString("0");
+            }
+        }
 
     }
 }

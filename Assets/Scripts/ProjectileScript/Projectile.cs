@@ -36,7 +36,7 @@ public class Projectile : MonoBehaviour
                     }
                     break;
                 case Team.enemy:
-                    if (other.gameObject.CompareTag("Miner") || other.gameObject.CompareTag("Warrior"))
+                    if (other.gameObject.CompareTag("Unit") || other.gameObject.CompareTag("Warrior"))
                     {
                         other.gameObject.GetComponent<MovableObject>().ApplyDamage(damage);
                         Destroy(gameObject);

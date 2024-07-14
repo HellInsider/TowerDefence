@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -14,13 +15,14 @@ public class Unit : MovableObject
     [Header("Active effects")]
     private List<Effect> effects = new List<Effect>();
 
-    private float stepTime; // Ôàçà õîäüáû 
+    private float stepTime;
 
     private void Start()
     {
         entityinJson = new EntityinJson();
         entityData = entityinJson.GetStats(idunit);
     }
+
     new void Awake()
     {
         base.Awake(); 
@@ -30,14 +32,14 @@ public class Unit : MovableObject
     new void Update()
     {
 
-        base.Update(); // Âûçîâ Update èç MovableObject
+        base.Update();
         if (Target != null)
         {
             ChangeSpeed();
             ApplyJiggling();
-            if (Vector3.Distance(Target.transform.position, transform.position) < entityData.distanceToEnter)
+            if (Vector3.Distance(Target.transform.position, transform.position) < 1)
             {
-                Target.GetComponent<Tower>().EnterUnit(gameObject);
+                Target.GetComponent<Tower>().EnterUnit(gameObject); 
             }
         }
         else

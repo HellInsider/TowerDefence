@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8424365601001468151}
   - component: {fileID: 4514383721798690814}
+  - component: {fileID: 1726820482051199540}
   - component: {fileID: 1987660834282044594}
   - component: {fileID: 7348923805010769429}
   - component: {fileID: 1729786216878449464}
@@ -50,7 +51,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  units: []
+  units:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Efficiency:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.033332825
+      value: -0.011791229
+      inSlope: 0.20101814
+      outSlope: 0.20101814
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1
+      inSlope: 0.00050906837
+      outSlope: 0.00050906837
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 0
+      inSlope: -0.2
+      outSlope: -0.2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   rangeOfAttack: {fileID: 0}
   projectile: {fileID: 6561135981250822360, guid: 3adde7c091c9a7b4d87da96ca249833c, type: 3}
   attackRate: 0.125
@@ -58,6 +102,21 @@ MonoBehaviour:
   projSpeed: 10
   isFire: 0
   type: 0
+  efficiency_coef: 0
+  abilityHolder: {fileID: 1726820482051199540}
+--- !u!114 &1726820482051199540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942541252876126393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea91c856cc337c4ca106c24b8f26f5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability: {fileID: 11400000, guid: a89991befc75e5443913a0dd964436f2, type: 2}
 --- !u!212 &1987660834282044594
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,7 +158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -7837520693009569278, guid: 6d2e9670a84144144a6de873db5b9845, type: 3}
+  m_Sprite: {fileID: 4255673142829489750, guid: ce6ff1b0582394448a26af614fb99605, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,7 +221,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2, y: 2.84375}
+    oldSize: {x: 2, y: 2.53125}
     newSize: {x: 2, y: 2.84375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

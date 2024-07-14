@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
@@ -78,3 +79,4 @@ public class DecorationBaker : MonoBehaviour
         spriteRenderer.sprite = Sprite.Create(tex,new Rect(0f,0f,Screen.width,Screen.height),new Vector2(0.0f,0.0f));
     }
 }
+#endif

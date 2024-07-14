@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,14 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DelayStart());
+    }
+    public IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(0.1f);
         stage.SpawnStage(transform);
+
+
     }
 
     // Update is called once per frame
@@ -52,7 +60,11 @@ public class EnemySpawner : MonoBehaviour
                 public void SpawnCrowd(Transform transform)
                 {
                     for (int i = 0; i < count; i++)
-                        GameObject.Instantiate(enemyPrefab, transform);
+                    {
+                        var unit = GameObject.Instantiate(enemyPrefab, transform);
+                        
+                    }
+                       
                 }
             }
         }

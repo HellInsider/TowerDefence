@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,13 +11,14 @@ public class MovableObject : MonoBehaviour
     [SerializeField] private GameObject target;
     [Header("Properties")]
     [SerializeField] private protected float baseSpeed;
-    [SerializeField] private protected NavMeshAgent agent;
+    [SerializeField] public NavMeshAgent agent;
     [SerializeField] private protected float health;
     public GameObject Target => target;
     public float BaseSpeed => baseSpeed;
     public float Health => health;
 
     public bool isDead;
+
 
     public void SetTarget(GameObject newTarget)
     {
@@ -26,7 +28,7 @@ public class MovableObject : MonoBehaviour
             return;
         }
         target = newTarget;
-        agent.SetDestination(target.transform.position);
+        agent.SetDestination(newTarget.transform.position);
     }
     public void SetTarget(Vector2 newTarget)
     {
@@ -50,6 +52,8 @@ public class MovableObject : MonoBehaviour
 
     private protected void Update()
     {
+        //agent.SetDestination(target.transform.position);
+
         if (target == null || isDead) return;
 
         if (agent.Raycast(agent.transform.position, out var hit))
@@ -78,7 +82,6 @@ public class MovableObject : MonoBehaviour
         agent.enabled = false;
         enabled = false;
         transform.position = -Vector3.one;
-
     }
 
     protected IEnumerator DieTimer()
